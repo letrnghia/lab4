@@ -1,196 +1,162 @@
-import React, { useState } from 'react';
-import { ChevronDown, Clock, Star, Users, Globe, Play } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuleSoft Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
 
-const MuleSoftCourse = () => {
-  const [activeSection, setActiveSection] = useState(null);
+        header {
+            background-color: #0078d4;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
 
-  const courseInfo = {
-    title: "Upgraded with latest MuleSoft ESB versions, Anypoint Platform, DataWeave, MUnit, DevOps, MCD Tests and Realtime Project",
-    rating: 4.6,
-    totalRatings: 4705,
-    students: 26379,
-    hours: "50.5 hours",
-    lastUpdated: "November 2023",
-    languages: ["English", "English [Auto]", "French [Auto]"]
-  };
+        .container {
+            display: flex;
+            margin: 20px;
+        }
 
-  const sections = [
-    {
-      id: 7,
-      title: "Section 7: DataWeave language - basics",
-      duration: "1hr 1min",
-      lectures: 10,
-      progress: "0/10"
-    },
-    {
-      id: 8,
-      title: "Section 8: Mule database module - first system api uhub (database) sapi",
-      duration: "1hr 15min",
-      lectures: 9,
-      progress: "0/9"
-    },
-    {
-      id: 9,
-      title: "Section 9: Mule validation module and flow types",
-      duration: "57min",
-      lectures: 7,
-      progress: "0/7"
-    },
-    {
-      id: 10,
-      title: "Section 10: Mule error handling",
-      duration: "2hr 22min",
-      lectures: 11,
-      progress: "0/11"
-    },
-    {
-      id: 11,
-      title: "Section 11: Anypoint platform introduction & access management",
-      duration: "19min",
-      lectures: 3,
-      progress: "0/3"
-    },
-    {
-      id: 12,
-      title: "Section 12: Anypoint Platform - Design Center - Design API's Using RAML",
-      duration: "1hr",
-      lectures: 6,
-      progress: "0/6"
-    },
-    {
-      id: 13,
-      title: "Section 13: Anypoint Platform - Design Center - Design Fragments Based API's Using RAML",
-      duration: "57min",
-      lectures: 9,
-      progress: "0/9"
-    }
-  ];
+        .course-info {
+            flex: 3;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-  const learningPoints = [
-    {
-      text: "You will became expert in Mule ESB, Anypoint platform operations, MUnit and DevOps with Mule.",
-      key: "expertise"
-    },
-    {
-      text: "Step by step coding in detail explanation.",
-      key: "coding"
-    },
-    {
-      text: "You are a student/customer should be able to setup mulesoft by your own for your organization",
-      key: "setup"
-    },
-    {
-      text: "You should be able to develop, design, manage projects.",
-      key: "projects"
-    },
-    {
-      text: "Mule Level 1, Level 2 and Integration Associate certifications are guarantee.",
-      key: "certifications"
-    },
-    {
-      text: "This course teaches you mule 4.x in depth including all the phases of SDLC.",
-      key: "sdlc"
-    },
-    {
-      text: "You will feel real time hands on experience after finishing this course.",
-      key: "experience"
-    },
-    {
-      text: "The course will keep on added with new topics from mulesoft.",
-      key: "updates"
-    },
-    {
-      text: "One course destination to learn all the actions of real time project.",
-      key: "comprehensive"
-    },
-    {
-      text: "Mule real time project of this course helps to you to deal with all real time project activities and makes you confident while you are working in real time.",
-      key: "realtime"
-    }
-  ];
+        .course-info h1 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
 
-  return (
-    <div className="max-w-6xl mx-auto p-6 bg-white">
-      {/* Header Section */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-4">{courseInfo.title}</h1>
-        <div className="flex items-center gap-6 mb-4">
-          <div className="flex items-center">
-            <span className="text-xl font-bold mr-2">{courseInfo.rating}</span>
-            <Star className="text-yellow-400 w-5 h-5" />
-            <span className="ml-2 text-gray-600">({courseInfo.totalRatings} ratings)</span>
-          </div>
-          <div className="flex items-center">
-            <span>{courseInfo.students.toLocaleString()} Students</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 text-sm text-gray-600">
-          <Clock className="w-4 h-4" />
-          <span>Last updated {courseInfo.lastUpdated}</span>
-        </div>
-        <div className="flex items-center gap-4 text-sm text-gray-600 mt-2">
-          <Globe className="w-4 h-4" />
-          <span>{courseInfo.languages.join(", ")}</span>
-        </div>
-      </div>
+        .course-info .stats {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
 
-      {/* What you'll learn section */}
-      <div className="border rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-bold mb-4">What you'll learn</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {learningPoints.map((point) => (
-            <div key={point.key} className="flex items-start">
-              <svg className="w-5 h-5 text-gray-700 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span className="text-gray-700">{point.text}</span>
+        .video-preview {
+            margin-bottom: 20px;
+        }
+
+        .video-preview iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .course-content {
+            flex: 2;
+            margin-left: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-content h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            margin: 0;
+            cursor: pointer;
+            color: #0078d4;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            display: none;
+        }
+
+        .section ul li {
+            font-size: 14px;
+            padding: 5px 0;
+            color: #333;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #0078d4;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MuleSoft 4.X Complete Guide</h1>
+    </header>
+
+    <div class="container">
+        <div class="course-info">
+            <h1>Upgraded with Latest MuleSoft ESB Versions</h1>
+            <p class="stats">⭐ 4.6 | 26,379 Students | 50.5 Hours Total</p>
+
+            <div class="video-preview">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Course Content */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">Course content</h2>
-        <div className="space-y-2">
-          {sections.map((section) => (
-            <div key={section.id} className="border rounded">
-              <button
-                className="w-full p-4 flex items-center justify-between hover:bg-gray-50"
-                onClick={() => setActiveSection(activeSection === section.id ? null : section.id)}
-              >
-                <div>
-                  <h3 className="font-medium text-left">{section.title}</h3>
-                  <p className="text-sm text-gray-500 text-left">
-                    {section.progress} | {section.duration}
-                  </p>
-                </div>
-                <ChevronDown 
-                  className={`w-5 h-5 transition-transform ${
-                    activeSection === section.id ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
+            <p>This course covers Mule ESB, Anypoint Platform, DataWeave, and MUnit with practical projects. Learn to develop, design, and manage APIs with hands-on experience!</p>
+        </div>
+
+        <div class="course-content">
+            <h2>Course Content</h2>
+
+            <div class="section">
+                <h3 onclick="toggleSection(this)">Section 1: Introduction</h3>
+                <ul>
+                    <li>1. Overview (5 min)</li>
+                    <li>2. Integration Introduction (8 min)</li>
+                    <li>3. API Development Lifecycle (4 min)</li>
+                </ul>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Integration Video Preview */}
-      <div className="bg-blue-50 p-8 rounded-lg mb-8">
-        <h2 className="text-2xl font-bold mb-4">Integration and Integration history</h2>
-        <div className="bg-black/50 rounded-lg aspect-video flex items-center justify-center">
-          <Play className="w-16 h-16 text-white" />
+            <div class="section">
+                <h3 onclick="toggleSection(this)">Section 2: Mule 4 Installation Set-Up</h3>
+                <ul>
+                    <li>1. Install Studio (12 min)</li>
+                    <li>2. Configure Runtime (9 min)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3 onclick="toggleSection(this)">Section 3: Mule Basics</h3>
+                <ul>
+                    <li>1. Create First App (15 min)</li>
+                    <li>2. Debug & Export (10 min)</li>
+                    <li>3. Importing Apps (17 min)</li>
+                </ul>
+            </div>
         </div>
-        <ul className="mt-4 space-y-2 text-gray-700">
-          <li>• Integration: The process of making data transfer between multiple systems is known as integration.</li>
-          <li>• If we don't want to transfer the data between systems, then integration not required.</li>
-          <li>• Year's ago, everyone used paper based to persist or transfer data.</li>
-          <li>• IT has introduced then web applications development started later on a lot of data stored to individual systems.</li>
-        </ul>
-      </div>
     </div>
-  );
-};
 
-export default MuleSoftCourse;
+    <footer class="footer">
+        &copy; 2025 MuleSoft Learning Platform. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleSection(element) {
+            const ul = element.nextElementSibling;
+            ul.style.display = ul.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
